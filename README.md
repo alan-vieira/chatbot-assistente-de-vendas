@@ -42,7 +42,40 @@ Certifique-se de ter essas dependências instaladas no seu ambiente de desenvolv
   ```bash
   pip install -r requirements.txt
   ```
- 
+
+## Modificação no arquivo `compat.py` da biblioteca SQLAlchemy
+
+Ao utilizar a biblioteca SQLAlchemy em conjunto com o sistema operacional Windows ou Jython, foi identificado um possível problema relacionado à função `time.clock` na linha 264 do arquivo `compat.py`.
+
+### Problema Identificado
+
+No código original:
+
+  ```python
+  if win32 or jython:
+      time_func = time.clock
+  else:
+      time_func = time.time
+  ```
+
+A função time.clock é utilizada, porém, em algumas situações específicas, essa abordagem pode levar a problemas.
+
+### Solução Aplicada
+
+A seguinte modificação foi realizada para evitar possíveis complicações:
+
+  ```python
+  if win32 or jython:
+    #time_func = time.clock
+    pass
+  else:
+    time_func = time.time
+  ```
+
+Essa alteração evita o uso da função `time.clock` e opta por manter o código compatível em ambientes Windows e Jython.
+
+Nota: Modificar diretamente o código de bibliotecas pode ter implicações. Recomenda-se monitorar as atualizações da biblioteca e verificar se o problema foi abordado nas versões mais recentes.
+
 ## Como Usar
 
 Para executar o ChatBot, você pode usar o seguinte comando:
