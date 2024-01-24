@@ -24,7 +24,7 @@ A estrutura de pastas do projeto é organizada da seguinte forma:
 
 Antes de começar, você deve ter as seguintes dependências instaladas:
 
-- Python
+- Python 3.8
 
 Certifique-se de ter essas dependências instaladas no seu ambiente de desenvolvimento.
 
